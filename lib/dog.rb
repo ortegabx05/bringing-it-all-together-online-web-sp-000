@@ -1,13 +1,23 @@
 class Dog
+  
+  attr_accessor :name, :breed, :id
 
-    attr_accessor :name, :breed, :id
 
-
-    def initialize(id: nil,name:,breed:)
+   def initialize(id: nil,name:,breed:)
         @name = name
         @breed = breed
         @id = id
-
-    end
+   end
+    
+   def self.create_table
+        sql = <<-SQL
+            CREATE TABLE dogs (
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                breed TEXT
+            )
+        SQL
+        DB[:conn].execute(sql)
+   end
     
   end
